@@ -71,14 +71,8 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
           "ORDER BY so.student_order_id " +
           "LIMIT ?";
 
-  // TODO refactoring: make one method
   private Connection getConnection() throws SQLException {
-    Connection connection = DriverManager.getConnection(
-        Config.getProperty(Config.DB_URL),
-        Config.getProperty(Config.DB_USER),
-        Config.getProperty(Config.DB_PASSWORD)
-    );
-    return connection;
+    return ConnectionBuilder.getConnection();
   }
 
   @Override

@@ -1,6 +1,5 @@
 package edu.javacourse.studentorder.dao;
 
-import edu.javacourse.studentorder.config.Config;
 import edu.javacourse.studentorder.domain.CountryArea;
 import edu.javacourse.studentorder.domain.PassportOffice;
 import edu.javacourse.studentorder.domain.RegisterOffice;
@@ -11,7 +10,7 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DictionaryDaoIml implements DictionaryDao {
+public class DictionaryDaoImpl implements DictionaryDao {
 
   private static final String GET_STREET = "SELECT * FROM street WHERE LOWER(street_name) LIKE LOWER(?)";
   private static final String GET_PASSPORT = "SELECT * FROM passport_office WHERE passp_office_area_id = ?";
@@ -125,15 +124,7 @@ public class DictionaryDaoIml implements DictionaryDao {
     }
   }
 
-  // TODO refactoring: make one method
   private Connection getConnection() throws SQLException {
-    Connection connection = DriverManager.getConnection(
-        Config.getProperty(Config.DB_URL),
-        Config.getProperty(Config.DB_USER),
-        Config.getProperty(Config.DB_PASSWORD)
-    );
-    return connection;
+    return ConnectionBuilder.getConnection();
   }
-
-
 }
