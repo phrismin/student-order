@@ -8,10 +8,16 @@ import edu.javacourse.studentorder.exception.DaoException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 class DictionaryDaoImplTest {
+
+  private static final Logger logger = LoggerFactory.getLogger(DictionaryDaoImplTest.class);
 
   @BeforeAll
   public static void startUp() throws Exception {
@@ -20,6 +26,8 @@ class DictionaryDaoImplTest {
 
   @Test
   void findStreets() throws DaoException {
+    LocalDateTime now1 = LocalDateTime.now();
+    logger.info("TEST STREET {}", now1);
     List<Street> actual = new DictionaryDaoImpl().findStreets("улица");
     Assertions.assertEquals(3, actual.size());
   }
